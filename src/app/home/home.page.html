@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/">Volver</ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Inicio
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <ion-card class="welcome-card">
+      <ion-card-header>
+        <ion-card-title>¡Bienvenido a RegistraApp {{username}}!</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Aquí puedes explorar las últimas noticias y actualizaciones importantes.
+      </ion-card-content>
+    </ion-card>
+
+    <div class="button-group">
+      <ion-button expand="full" routerLink="/mi-perfil" class="custom-button">Mi Perfil</ion-button>
+      <ion-button expand="full" routerLink="/asignaturas" class="custom-button">Asignaturas</ion-button>
+      <ion-button expand="full" routerLink="/marcar-asistencia" class="custom-button">Marcar Asistencia</ion-button>
+      <ion-button expand="full" routerLink="/mi-api" class="custom-button">Prueba 404 notfound</ion-button>
+    </div>
+  </div>
+</ion-content>

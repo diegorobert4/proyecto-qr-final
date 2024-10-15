@@ -1,0 +1,85 @@
+ion-header {
+  --background: #000000; /* Cambiado a un color de fondo más atractivo */
+}
+
+ion-title {
+  color: #000000; /* Texto blanco para contrastar */
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+}
+
+ion-card {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+ion-card-header {
+  background-color: #ffffff;
+  color: #000000; /* Cambiado a un color que haga contraste con el fondo */
+  border-radius: 12px 12px 0 0;
+}
+
+ion-card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+ion-card-content {
+  padding: 20px;
+}
+
+ion-item {
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 20px;
+  font-size: 0.875rem;
+}
+
+.submit-button {
+  margin-bottom: 10px;
+}
+
+.reset-password-button {
+  color: #000204; /* Botón de "Olvidé mi contraseña" con color de texto */
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loading-spinner {
+  --spinner-width: 50px; /* Ajustado el tamaño del spinner */
+  color: #003c71; /* Color del spinner */
+}
+
+ion-item {
+  position: relative;
+}
+
+ion-icon {
+  cursor: pointer;
+  font-size: 20px;
+  color: #000000;
+}

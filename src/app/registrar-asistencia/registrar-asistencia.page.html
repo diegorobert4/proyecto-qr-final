@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home-docente"></ion-back-button> <!-- Cambia "/home-docente" por la ruta a la que quieras regresar -->
+    </ion-buttons>
+    <ion-title>Registrar Asistencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Seleccionar Asignatura</ion-label>
+    <ion-select [(ngModel)]="asignaturaSeleccionada" (ionChange)="seleccionarAsignatura(asignaturaSeleccionada)">
+      <ion-select-option *ngFor="let asignatura of asignaturas" [value]="asignatura">
+        {{ asignatura.nombre }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="asignaturaSeleccionada">
+    <ion-label>Fecha (DD/MM/AAAA):</ion-label>
+    <ion-input [(ngModel)]="fecha" placeholder="Ingrese la fecha"></ion-input>
+  </ion-item>
+
+  <ion-list *ngIf="asignaturaSeleccionada">
+    <ion-item *ngFor="let alumno of alumnos">
+      <ion-label>{{ alumno.nombre }}</ion-label>
+      <ion-select [(ngModel)]="alumno.estado">
+        <ion-select-option *ngFor="let estado of estados" [value]="estado">
+          {{ estado }}
+        </ion-select-option>
+      </ion-select>
+      <ion-button (click)="editarAsistencia(alumno)">Editar</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" (click)="registrarAsistencia()">Registrar Asistencia</ion-button>
+  <ion-button expand="full" (click)="cargarAsistencia(asignaturaSeleccionada?.nombre)">Cargar Asistencia</ion-button>
+
+  <ion-header *ngIf="asistencias.length > 0">
+    <ion-toolbar>
+      <ion-title>Asistencias Registradas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-list *ngIf="asistencias.length > 0">
+    <ion-item *ngFor="let asistencia of asistencias">
+      <ion-label>
+        {{ asistencia.fecha }} - {{ asistencia.asignatura }} (ID: {{ asistencia.id }})
+        <ion-list>
+          <ion-item *ngFor="let alumno of asistencia.alumnos">
+            <ion-label>{{ alumno.nombre }}: {{ alumno.estado }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-label>
+      <ion-button (click)="eliminarAsistencia(asistencia.id)">Eliminar</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

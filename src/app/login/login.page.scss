@@ -1,0 +1,69 @@
+/* Estilo para la página de inicio de sesión */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f9f9f9; /* Fondo claro y moderno */
+}
+
+.login-form-container {
+  width: 100%;
+  max-width: 360px;
+  padding: 20px;
+}
+
+.login-card {
+  border-radius: 20px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-title {
+  color: #333333; /* Texto oscuro para contraste */
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin-bottom: 20px;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.role-button {
+  border-radius: 30px; /* Bordes muy redondeados para un estilo más moderno */
+  font-size: 1.1rem;
+  background: #0072ff;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.role-button::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.2);
+  top: -50%;
+  left: -50%;
+  transform: rotate(45deg);
+  transition: transform 0.5s ease;
+}
+
+.role-button:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+.role-button:hover::before {
+  transform: rotate(45deg) scale(0);
+}

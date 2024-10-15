@@ -1,0 +1,52 @@
+.home-docente {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+}
+
+.welcome-message {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.welcome-message h2 {
+  color: #003c71;
+  font-size: 24px;
+  margin: 0;
+}
+
+ion-button {
+  margin: 8px 0;
+  --background: #003c71;
+  --color: #ffffff;
+  --border-radius: 12px;
+}
+
+ion-button:nth-child(2) {
+  --background: #0066cc;
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8); /* Light background for better visibility */
+  z-index: 10; /* Ensure it's above other content */
+}
+
+.loading-spinner {
+  margin-bottom: 16px; /* Space between spinner and text */
+  color: #003c71; /* Spinner color to match the theme */
+}
+
+.loading-overlay p {
+  color: #003c71; /* Text color for the loading message */
+  font-size: 16px; /* Font size for the loading message */
+}

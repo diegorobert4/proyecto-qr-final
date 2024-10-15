@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>docente-qr</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">docente-qr</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+    <!-- Lista de asignaturas -->
+    <ion-list>
+      <ion-item *ngFor="let asignatura of asignaturas" (click)="selectSubject(asignatura)">
+        <ion-label>{{ asignatura }}</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <!-- Código QR generado -->
+    <ion-card *ngIf="qrCodeDataUrl">
+      <img [src]="qrCodeDataUrl" />
+      <p>Tiempo restante: {{ countdown }} segundos</p>
+    </ion-card>
+
+
+
+    <!-- Código escaneado -->
+    <div *ngIf="scannedCode">
+      <h2>Código escaneado:</h2>
+      <p>{{ scannedCode }}</p>
+    </div>
+  </ion-content>
+</ion-content>

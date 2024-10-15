@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/">Volver</ion-back-button>
+    </ion-buttons>
+    <ion-title>Docente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="login-docente">
+  <div class="form-container">
+    <ion-card>
+      <ion-card-header>
+        <!-- Puedes añadir un título o algún contenido aquí si es necesario -->
+      </ion-card-header>
+      <ion-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <ion-item>
+            <h2>Usuario</h2>
+            <ion-label position="floating"></ion-label>
+            <ion-input formControlName="username" placeholder="Introduce tu nombre de usuario"></ion-input>
+          </ion-item>
+          <ion-item>
+            <h2>Contraseña</h2>
+            <ion-label position="floating"></ion-label>
+            <ion-input
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              placeholder="Introduce tu contraseña">
+              <ion-icon
+                slot="end"
+                [name]="showPassword ? 'eye-outline' : 'eye-off-outline'"
+                (click)="togglePasswordVisibility()">
+              </ion-icon>
+            </ion-input>
+          </ion-item>
+          <ion-button expand="full" type="submit" [disabled]="isLoading || loginForm.invalid" class="submit-button">
+            Iniciar Sesión
+          </ion-button>
+          <ion-button expand="full" color="light" (click)="goToResetPassword()" class="reset-password-button">
+            ¿Olvidaste tu contraseña?
+          </ion-button>
+          <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf="isLoading" class="loading-overlay">
+    <ion-spinner name="circles" class="loading-spinner"></ion-spinner>
+  </div>
+</ion-content>

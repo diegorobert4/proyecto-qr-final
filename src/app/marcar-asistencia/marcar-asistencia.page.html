@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home-docente"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Marcar Asistencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Asignatura:</ion-label>
+    <ion-input [value]="asignatura" readonly></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Fecha:</ion-label>
+    <ion-input [value]="fecha" readonly></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="scanBarcode()">Escanear Código</ion-button>
+  <ion-button expand="full" (click)="marcarAsistencia()">Marcar Asistencia</ion-button>
+</ion-content>

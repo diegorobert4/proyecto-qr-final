@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Ingreso</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="login-container">
+    <div class="login-form-container">
+      <ion-card class="login-card">
+        <ion-card-header>
+          <ion-card-title class="card-title">RegistraApp</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="button-group">
+            <ion-button expand="full" class="role-button" (click)="navigateTo('/login-alumno')">Alumno</ion-button>
+            <ion-button expand="full" class="role-button" (click)="navigateTo('/login-docente')">Docente</ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

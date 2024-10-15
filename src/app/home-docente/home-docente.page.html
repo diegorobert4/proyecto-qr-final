@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <div>Docente</div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="home-docente">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Home Docente</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <div class="welcome-message">
+    <h2>Bienvenido! {{ username }}</h2>
+  </div>
+  
+  <ion-button expand="full" (click)="navigateTo('registrar-asistencia')">
+    Registrar Asistencia
+  </ion-button>
+  <ion-button expand="full" (click)="navigateTo('docente-qr')">
+    Generar QR
+  </ion-button>
+
+  <ion-button expand="full" color="danger" (click)="logout()">
+    Cerrar Sesión
+  </ion-button>
+
+  <div *ngIf="isLoggingOut" class="loading-overlay">
+    <ion-spinner name="circles" class="loading-spinner"></ion-spinner>
+    <p>Cerrando sesión, por favor espere...</p>
+  </div>
+</ion-content>
