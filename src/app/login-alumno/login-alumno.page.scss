@@ -1,140 +1,155 @@
+/* Fondo de toda la página */
+ion-content {
+  background-color: #f7f8fa; /* Fondo suave */
+}
+
 /* Estilos para el encabezado */
 ion-header {
-  --background: linear-gradient(135deg, #003c71, #1e3c72); /* Degradado azul oscuro */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Agrega una sombra sutil al encabezado */
+  --background: linear-gradient(135deg, #6c5ce7, #74b9ff); /* Degradado en tonos morado y azul */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
+/* Título del encabezado */
 ion-title {
-  color: #000000; /* Color blanco para el título */
-  font-size: 1.4rem; /* Tamaño de fuente más grande */
-  font-weight: 600; /* Peso de fuente más audaz */
+  color: #ffffff; /* Título en blanco */
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 
-ion-back-button {
-  --color: #000000; /* Color blanco para el botón de retroceso */
-  font-size: 1.1rem; /* Tamaño de fuente más grande para el botón */
-}
-
-/* Estilos para el formulario */
+/* Contenedor del formulario */
 .form-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  padding: 20px; /* Padding más amplio */
-  background-color: #f0f0f5; /* Fondo gris claro */
+  height: 100vh; /* Ocupa toda la pantalla */
+  padding: 20px;
 }
 
-ion-card {
+/* Tarjeta con sombra */
+.card-3d {
   width: 100%;
-  max-width: 400px; /* Ancho máximo ligeramente reducido */
-  margin: auto;
-  border-radius: 16px; /* Bordes más redondeados */
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Sombra más prominente */
-  background-color: #ffffff; /* Fondo blanco para el card */
+  max-width: 420px;
+  border-radius: 20px; /* Bordes redondeados */
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1); /* Sombra más prominente */
+  background-color: #ffffff; /* Fondo blanco */
+  padding: 30px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-ion-card-header {
-  padding: 20px;
-  background-color: #003c71; /* Fondo azul oscuro para el header */
-  border-top-left-radius: 16px; /* Bordes redondeados en la parte superior */
-  border-top-right-radius: 16px; /* Bordes redondeados en la parte superior */
+/* Efecto al pasar el mouse sobre la tarjeta */
+.card-3d:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
 }
 
-ion-card-title {
-  font-size: 1.4rem; /* Tamaño de fuente más grande */
-  font-weight: 600; /* Peso de fuente más audaz */
-  text-align: center; /* Alineación del título al centro */
-  color: #ffffff; /* Color blanco para el título del card */
+/* Estilos para los elementos del formulario */
+.item-3d {
+  margin-bottom: 16px;
+  --background: #f9f9f9; /* Fondo claro en los inputs */
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Sombra suave */
+  position: relative; /* Para el ícono de ojo */
 }
 
-ion-card-content {
-  padding: 20px;
+/* Estilos de los encabezados dentro del formulario */
+.item-3d h2 {
+  font-size: 1rem;
+  color: #2d3436; /* Color gris oscuro */
 }
 
-ion-item {
-  margin-bottom: 16px; /* Ajuste del margen inferior */
-  position: relative; /* Para posicionar el ícono de ojo */
-}
-
+/* Estilos para los inputs */
 ion-input {
-  --padding-end: 40px; /* Espacio para el ícono de ojo */
-  --padding-start: 12px; /* Padding al inicio */
-  --padding-end: 12px; /* Padding al final */
-  --placeholder-color: #9e9e9e; /* Color del placeholder */
-  --background: #f9f9f9; /* Fondo ligeramente gris para los inputs */
-  border-radius: 8px; /* Bordes redondeados */
-  padding-right: 40px; /* Deja espacio para el ícono de ojo */
+  --padding-start: 12px;
+  --placeholder-color: #b2bec3; /* Placeholder gris */
+  font-size: 1rem;
+  color: #2d3436; /* Color del texto */
 }
 
 /* Estilos para el ícono de ojo */
 ion-icon.password-eye {
-  position: absolute; /* Asegura que el ícono esté posicionado dentro del input */
-  right: 10px; /* Espacio desde el borde derecho del input */
-  top: 35%; /* Centra verticalmente el ícono */
-  transform: translateY(50%); /* Ajusta la posición verticalmente hacia abajo */
-  cursor: pointer; /* Cambia el cursor para indicar que es interactivo */
-  color: #003c71; /* Color azul oscuro para el ícono */
-  font-size: 1.5rem; /* Tamaño del ícono */
-  transition: color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
-  z-index: 10; /* Asegura que el ícono esté por encima del input */
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c5ce7; /* Ícono morado */
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
 
+/* Cambia el color del ícono al pasar el mouse */
 ion-icon.password-eye:hover {
-  color: #002a54; /* Color azul más oscuro al pasar el mouse */
-  transform: scale(1.1); /* Escala ligeramente el ícono */
+  color: #4b4df0; /* Cambia a un tono más oscuro */
 }
 
-/* Estilos para la animación de carga personalizada */
+/* Estilos para el mensaje de error */
+.error-message {
+  color: #e74c3c; /* Rojo suave */
+  font-size: 0.9rem;
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+
+/* Estilos para el spinner de carga */
 .loading-overlay {
-  position: fixed; /* Asegura que cubra toda la pantalla */
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(30, 60, 114, 0.8); /* Fondo azul oscuro semi-transparente */
+  background-color: rgba(108, 92, 231, 0.85); /* Fondo semitransparente morado */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Asegura que esté encima de otros elementos */
+  z-index: 1000;
 }
 
-/* Spinner personalizado */
 .custom-spinner {
-  width: 60px; /* Tamaño ligeramente más grande */
-  height: 60px; /* Tamaño ligeramente más grande */
+  width: 50px;
+  height: 50px;
   border: 6px solid rgba(255, 255, 255, 0.2);
+  border-top: 6px solid #ffffff;
   border-radius: 50%;
-  border-top: 6px solid #ffffff; /* Color blanco para el spinner */
-  animation: spin 1.2s linear infinite; /* Velocidad de la animación ajustada */
+  animation: spin 1.2s linear infinite;
 }
 
-/* Animación de giro */
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
-/* Estilos para los botones */
-ion-button {
-  margin-top: 12px;
-  border-radius: 8px; /* Bordes más redondeados */
-  --background: #003c71; /* Fondo azul oscuro */
-  --color: #ffffff; /* Texto blanco */
-  --padding: 12px 16px; /* Padding ajustado */
-}
-
-/* Estilo para mostrar errores */
-.error-message {
-  color: #d9534f; /* Rojo para el mensaje de error */
-  font-size: 0.9rem; /* Tamaño de fuente ligeramente mayor */
-  margin-top: 4px; /* Menos margen superior */
-  margin-bottom: 16px; /* Menos margen inferior */
-}
-
-/* Estilo para el texto de carga */
 .loading-text {
-  font-family: 'Arial', sans-serif;
-  font-size: 1.1rem; /* Tamaño de fuente ligeramente mayor */
-  color: #ffffff; /* Texto blanco para el mensaje de carga */
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin-top: 10px;
 }
+
+/* Botones */
+.button-3d {
+  margin-top: 16px;
+  border-radius: 8px;
+  --background: linear-gradient(135deg, #6c5ce7, #74b9ff); /* Degradado morado y azul */
+  --color: #ffffff; /* Texto blanco */
+  --padding: 12px 16px;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Efecto al pasar el mouse sobre los botones */
+.button-3d:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,62 +1,82 @@
-page-home {
-  ion-content {
-    --background: #f0f4f8; /* Color de fondo muy suave */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-  }
+// Variables de colores para personalizar el estilo
+$primary-color: #3880ff;
+$secondary-color: #3dc2ff;
+$background-color: #f4f5f8;
+$card-background-color: #ffffff;
+$button-background-color: #3880ff;
+$button-hover-color: #3171e0;
+$text-color: #222;
+$button-text-color: #ffffff;
 
-  .container {
-    width: 100%;
-    max-width: 600px;
+.container {
+  padding: 20px;
+  background-color: $background-color;
+}
+
+.welcome-card {
+  background-color: $card-background-color;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  
+  ion-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $primary-color;
     text-align: center;
   }
 
-  .welcome-card {
-    margin-bottom: 20px;
-    border-radius: 16px; /* Bordes más redondeados */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Sombra más suave y extendida */
-    background: #ffffff; /* Fondo blanco para el card */
-  }
-
-  .welcome-card ion-card-header {
-    background-color: #007bff; /* Azul vibrante para el header */
-    color: white;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-  }
-
-  .welcome-card ion-card-title {
-    font-family: 'Poppins', sans-serif; /* Fuente moderna */
-    font-size: 22px;
-    font-weight: 600;
-  }
-
-  .welcome-card ion-card-content {
-    font-size: 16px;
-    color: #555; /* Gris más claro para el texto */
-    padding: 20px;
-  }
-
-  .button-group {
-    display: flex;
-    flex-direction: column;
-    gap: 12px; /* Espacio entre botones */
-  }
-
-  .custom-button {
-    --background: #007bff; /* Azul vibrante para los botones */
-    --color: white; /* Texto blanco para los botones */
-    --border-radius: 24px; /* Bordes muy redondeados */
-    padding: 14px 0;
-    font-size: 16px;
-    font-weight: 500;
-  }
-
-  .header-logo {
-    height: 40px; /* Tamaño del logo */
-    margin-right: 10px; /* Espacio entre el logo y el título */
+  ion-card-content {
+    font-size: 1rem;
+    color: $text-color;
+    text-align: center;
+    padding: 10px 20px;
   }
 }
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+
+  .custom-button {
+    background-color: $button-background-color;
+    color: $button-text-color;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    &:hover {
+      background-color: $button-hover-color;
+    }
+
+    ion-button {
+      --background: $button-background-color;
+      --color: $button-text-color;
+      --border-radius: 8px;
+      --padding-start: 12px;
+      --padding-end: 12px;
+    }
+  }
+}
+
+// Toolbar
+ion-toolbar {
+  --background: $primary-color;
+  --color: $button-text-color;
+}
+
+// Back button
+ion-back-button {
+  color: $button-text-color;
+}
+
+// Title in the toolbar
+ion-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
+  color: $button-text-color;
+}
+
