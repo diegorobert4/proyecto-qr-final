@@ -4,16 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { MarcarAsistenciaPageRoutingModule } from './marcar-asistencia-routing.module';
 import { MarcarAsistenciaPage } from './marcar-asistencia.page';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx'; // Agregado
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MarcarAsistenciaPageRoutingModule
+    MarcarAsistenciaPageRoutingModule,
+    ZXingScannerModule
   ],
-  declarations: [MarcarAsistenciaPage],
-  providers: [BarcodeScanner] // Proveedor agregado
+  declarations: [MarcarAsistenciaPage]
 })
 export class MarcarAsistenciaPageModule {}

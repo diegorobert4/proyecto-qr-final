@@ -19,6 +19,8 @@ export class LoginDocentePage {
   private readonly userPassword = 'Ronald1';
   private readonly userName = 'Ronald Villalobos';
 
+  
+
   constructor(
     private fb: FormBuilder,
     private router: Router,

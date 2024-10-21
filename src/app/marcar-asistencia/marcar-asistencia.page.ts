@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
-import { Router } from '@angular/router';
-import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
-
-interface NavigationState {
-  scannedCode: string; // Define la estructura esperada
-}
+import { ToastController, LoadingController } from '@ionic/angular';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx'; // Asegúrate de tener esta importación
 
 @Component({
   selector: 'app-marcar-asistencia',
@@ -15,25 +11,28 @@ interface NavigationState {
 export class MarcarAsistenciaPage implements OnInit {
   asignatura: string | null = null;
   fecha: string = '';
-  nombreUsuario: string = 'Martín Almonacid'; // Puedes obtenerlo del almacenamiento local o del contexto de usuario
-  correoUsuario: string = 'martin.almonacid@duocuc.cl'; // Puedes obtenerlo del almacenamiento local o del contexto de usuario
+  horaActual: string = '';
+  nombreUsuario: string = 'Martín Almonacid';
+  correoUsuario: string = 'martin.almonacid@duocuc.cl';
+  hasDevices: boolean = false;
+  hasPermission: boolean = false;
 
   constructor(
     private storageService: StorageService,
-    private router: Router,
-    private barcodeScanner: BarcodeScanner
+    private toastController: ToastController,
+    private loadingController: LoadingController,
+    private barcodeScanner: BarcodeScanner // Inyecta el servicio BarcodeScanner
   ) {}
 
   ngOnInit() {
-    // Obtener el código escaneado desde el estado de navegación
-    const navigation = this.router.getCurrentNavigation();
-    if (navigation?.extras.state) {
-      const state = navigation.extras.state as NavigationState; // Haz un cast al tipo NavigationState
-      this.asignatura = state.scannedCode; // Accede a la propiedad correctamente
-    }
-
-    // Establecer la fecha actual
     this.fecha = this.obtenerFechaActual();
+    this.horaActual = this.obtenerHoraActual();
+    this.checkDeviceAndPermission(); // Verificar dispositivos y permisos
+
+    // Actualiza la hora cada segundo
+    setInterval(() => {
+      this.horaActual = this.obtenerHoraActual();
+    }, 1000);
   }
 
   obtenerFechaActual(): string {
@@ -44,52 +43,74 @@ export class MarcarAsistenciaPage implements OnInit {
     return `${dia}/${mes}/${anio}`;
   }
 
+  obtenerHoraActual(): string {
+    const ahora = new Date();
+    return ahora.toLocaleTimeString(); // Retorna la hora en formato local
+  }
+
+  async checkDeviceAndPermission() {
+    this.hasDevices = true; // Cambia esto según tu lógica de dispositivos
+    this.hasPermission = true; // Cambia esto según tu lógica de permisos
+  }
+
+  async scan() {
+    try {
+      const result = await this.barcodeScanner.scan();
+      this.handleScanSuccess(result.text); // Asegúrate de que `result.text` sea el valor que deseas
+    } catch (error) {
+      console.error('Error de escaneo:', error);
+      await this.presentToast('Error al escanear el código. Por favor, intenta de nuevo.');
+    }
+  }
+
   async marcarAsistencia() {
     if (!this.asignatura) {
-      alert('No se ha escaneado ninguna asignatura.');
+      await this.presentToast('No se ha escaneado ninguna asignatura.');
       return;
     }
 
-    const asistenciaId = Date.now();
-    const asistenciaData = {
-      id: asistenciaId,
+    const asistenciaData = this.crearAsistenciaData();
+
+    const loading = await this.loadingController.create({
+      message: 'Marcando asistencia...',
+    });
+    await loading.present();
+
+    try {
+      await this.storageService.createObject(`asistencia-${Date.now()}`, asistenciaData);
+      await this.presentToast(`Asistencia marcada para ${this.asignatura} en la fecha: ${this.fecha}`);
+    } catch (error) {
+      console.error('Error al guardar la asistencia:', error);
+      await this.presentToast('Hubo un error al marcar la asistencia. Por favor, inténtalo de nuevo.');
+    } finally {
+      loading.dismiss();
+    }
+  }
+
+  crearAsistenciaData() {
+    return {
+      id: Date.now(),
       asignatura: this.asignatura,
       fecha: this.fecha,
+      hora: this.horaActual,
       usuario: {
         nombre: this.nombreUsuario,
         correo: this.correoUsuario,
       },
     };
-
-    try {
-      await this.storageService.createObject(`asistencia-${asistenciaId}`, asistenciaData);
-      alert(`Asistencia marcada para ${this.asignatura} en la fecha: ${this.fecha}`);
-    } catch (error) {
-      console.error('Error al guardar la asistencia:', error);
-      alert('Hubo un error al marcar la asistencia. Por favor, inténtalo de nuevo.');
-    }
   }
 
-  scanBarcode() {
-    const options: BarcodeScannerOptions = {
-      preferFrontCamera: false, // iOS y Android
-      showFlipCameraButton: true, // iOS y Android
-      showTorchButton: true, // iOS y Android
-      torchOn: false, // Android
-      // saveHistory: true, // Esta propiedad no es válida y se ha eliminado
-      prompt: 'Coloca un código QR dentro del área de escaneo', // Android
-      resultDisplayDuration: 500, // Android
-      formats: 'QR_CODE', // todos los formatos
-      orientation: 'portrait', // Android solo
-    };
-  
-    this.barcodeScanner.scan(options).then(barcodeData => {
-      this.asignatura = barcodeData.text; // Guarda el código escaneado
-      alert(`Código escaneado: ${barcodeData.text}`);
-    }).catch(err => {
-      console.log('Error: ', err);
-      alert('Error al escanear el código.');
+  handleScanSuccess(result: string) {
+    this.asignatura = result; // Guarda el código escaneado
+    this.presentToast(`Código escaneado: ${result}`);
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      position: 'top',
     });
+    toast.present();
   }
-  
 }

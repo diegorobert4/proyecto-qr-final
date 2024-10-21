@@ -1,23 +1,31 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home-docente"></ion-back-button>
+      <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
     <ion-title>Marcar Asistencia</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-item>
-    <ion-label>Asignatura:</ion-label>
-    <ion-input [value]="asignatura" readonly></ion-input>
-  </ion-item>
+<ion-content class="content-background">
+  <div class="welcome-message">
+    <h2>Bienvenido, {{ nombreUsuario }}</h2>
+    <p>Correo: <strong>{{ correoUsuario }}</strong></p>
+    <p>Fecha: <strong>{{ fecha }}</strong></p>
+    <p>Hora: <strong>{{ horaActual }}</strong></p>
+  </div>
 
-  <ion-item>
-    <ion-label>Fecha:</ion-label>
-    <ion-input [value]="fecha" readonly></ion-input>
-  </ion-item>
+  <div class="button-container">
+    <ion-button expand="full" (click)="scan()" class="scan-button">
+      Escanear Asignatura
+    </ion-button>
 
-  <ion-button expand="full" (click)="scanBarcode()">Escanear Código</ion-button>
-  <ion-button expand="full" (click)="marcarAsistencia()">Marcar Asistencia</ion-button>
+    <ion-button expand="full" (click)="marcarAsistencia()" class="mark-attendance-button">
+      Marcar Asistencia
+    </ion-button>
+  </div>
+
+  <div class="footer">
+    <p>© 2024 Sistema de Asistencia</p>
+  </div>
 </ion-content>

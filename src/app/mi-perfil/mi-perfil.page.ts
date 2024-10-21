@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { StorageService } from '../../services/storage.service'; // Ruta corregida
 
 @Component({
   selector: 'app-mi-perfil',
@@ -16,14 +17,21 @@ export class MiPerfilPage implements OnInit {
   constructor(
     private toastController: ToastController,
     private loadingController: LoadingController,
-    private router: Router
+    private router: Router,
+    private storageService: StorageService // Inyección del servicio
   ) {}
 
   ngOnInit() {
-    // Obtener el nombre, el correo y el teléfono del localStorage
+    // Obtener el nombre, el correo, el teléfono y la imagen de perfil del localStorage
     this.nombre = localStorage.getItem('username') || '';
     this.correo = localStorage.getItem('correo') || '';
     this.telefono = localStorage.getItem('telefono') || ''; // Recuperar el teléfono
+
+    // Cargar la imagen de perfil si existe
+    const storedImage = this.storageService.getObjectById('profileImage');
+    if (storedImage) {
+      this.profileImage = storedImage;
+    }
   }
 
   onFileSelected(event: any) {
@@ -42,7 +50,7 @@ export class MiPerfilPage implements OnInit {
   async saveProfile() {
     const loading = await this.loadingController.create({
       message: 'Guardando...',
-      spinner: 'circles',  
+      spinner: 'circles',
     });
 
     await loading.present();
@@ -51,6 +59,11 @@ export class MiPerfilPage implements OnInit {
     setTimeout(async () => {
       // Guardar el número de teléfono en localStorage
       localStorage.setItem('telefono', this.telefono); 
+
+      // Guardar la imagen de perfil en Local Storage
+      if (this.profileImage) {
+        this.storageService.createObject('profileImage', this.profileImage);
+      }
 
       console.log("Perfil guardado");
       console.log("Nombre:", this.nombre);
@@ -67,7 +80,7 @@ export class MiPerfilPage implements OnInit {
 
       await toast.present();
       await loading.dismiss();
-    }, 2000); 
+    }, 2000);
   }
 
   goHome() {

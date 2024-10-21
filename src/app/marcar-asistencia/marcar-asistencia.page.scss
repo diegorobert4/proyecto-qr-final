@@ -1,0 +1,56 @@
+.content-background {
+  background-color: #f4f4f9; // Color de fondo suave
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+}
+
+.welcome-message {
+  background-color: #ffffff; // Fondo blanco para el mensaje
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%; // Asegura que el contenedor ocupe el ancho completo
+  max-width: 400px; // Establece un ancho máximo para pantallas grandes
+}
+
+h2 {
+  color: #333333; // Color del texto
+  font-family: 'Roboto', sans-serif;
+}
+
+p {
+  color: #666666; // Color del texto secundario
+  font-size: 14px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; // Espacio entre los botones
+  width: 100%; // Asegura que el contenedor ocupe el ancho completo
+  max-width: 400px; // Establece un ancho máximo para pantallas grandes
+}
+
+.scan-button {
+  background-color: #3880ff; // Color del botón escanear
+  color: white;
+}
+
+.mark-attendance-button {
+  background-color: #10dc60; // Color del botón marcar asistencia
+  color: white;
+}
+
+.footer {
+  margin-top: auto; // Mueve el pie de página al final
+  text-align: center;
+  padding: 10px;
+  color: #999999; // Color del texto del pie de página
+  font-size: 12px;
+}
